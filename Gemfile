@@ -7,7 +7,10 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'twitter-bootstrap-rails', '~> 3.2.0'
+gem 'bootstrap-sass'
+gem 'sass-rails'
+gem 'autoprefixer-rails'
+gem 'devise'
 group :development do
 end
 

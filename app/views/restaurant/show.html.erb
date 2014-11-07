@@ -1,0 +1,26 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+			<h1><%= @restaurant.name %></h1>
+			<p><%= @restaurant.description %></p>
+			<address>
+				<%= @restaurant.address %></br>
+				<%= @restaurant.city %>
+				<%= @restaurant.state %>, <%= @restaurant.postal_code %>
+			</address>
+			<p>Phone: <%= @restaurant.phone %></p>
+			<p>Website: <%= @restaurant.web %></p>
+		</div>
+		<div class="col-md-4 col-lg-6">
+			<div class="btn-group">
+				<%= link_to "Make a Reservation",
+					new_reservation_path, class: "btn btn-primary" %>				
+				<%= link_to "Edit Details", edit_restaurant_path,
+					html_options = {class: "btn btn-warning"} %>
+				<%= link_to "Delete Restaurant", @restaurant,
+					method: :delete, data: {confirm: "You sure?"},
+					class: "btn btn-danger" %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container-fluid">
+<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+		<%= form_for @restaurant, url: {action: "update"}, html: { role: "form" } do |f| %>
+			<div class="form-group">
+				<%= label(:restaurant, :name) %>
+				<%= f.text_field :name, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= label(:restaurant, :description) %>
+				<%= f.text_field :description, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= label(:restaurant, :address) %>
+				<%= f.text_field :address, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= label(:restaurant, :city) %>
+				<%= f.text_field :city, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= label(:restaurant, :state) %>
+				<%= f.text_field :state, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= label(:restaurant, :postal_code) %>
+				<%= f.text_field :postal_code, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= label(:restaurant, :web) %>
+				<%= f.text_field :web, class: "form-control" %>
+			</div>
+			<br/>
+			<%= f.submit "Update", class: "btn btn-primary" %>
+		<% end %>
+		</div>
+	</div>
+</div>	

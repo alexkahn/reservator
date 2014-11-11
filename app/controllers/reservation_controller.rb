@@ -13,9 +13,9 @@ class ReservationController < ApplicationController
   end
   
   def create
-    @restaurant = Restaurant.find(params[:restaurant_id])
-    @reservation = Reservation.new(reservation_params)
-    @reservation.save()
+    # @restaurant = Restaurant.find_by_id(params[:restaurant_id])
+    @reservation = Reservation.new(reservation_params.merge(:restaurant_id => params[:restaurant_id]))
+    @reservation.save 
     redirect_to @reservation, notice: 'Created'
   end
   
@@ -38,7 +38,7 @@ class ReservationController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:name, :email, :date, :time)
+    params.require(:reservation).permit(:name, :email, :date, :time, :restaurant_id)
   end
 
 end

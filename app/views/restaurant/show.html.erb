@@ -14,7 +14,7 @@
 		<div class="col-md-4 col-lg-6">
 			<div class="btn-group">
 				<%= link_to "Make a Reservation",
-					new_reservation_path, class: "btn btn-primary" %>				
+					new_restaurant_reservation_path(@restaurant), class: "btn btn-primary" %>				
 				<%= link_to "Edit Details", edit_restaurant_path,
 					html_options = {class: "btn btn-warning"} %>
 				<%= link_to "Delete Restaurant", @restaurant,

@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20141111031737) do
     t.integer  "restaurant_id"
   end
 
+  add_index "reservations", ["restaurant_id"], name: "index_reservations_on_restaurant_id"
+
   create_table "restaurants", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -62,5 +64,6 @@ ActiveRecord::Schema.define(version: 20141111031737) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

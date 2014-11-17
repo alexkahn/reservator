@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114175037) do
+ActiveRecord::Schema.define(version: 20141117005142) do
 
   create_table "owners", force: true do |t|
     t.string   "name"
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(version: 20141114175037) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "restaurant_id"
   end
+
+  add_index "owners", ["restaurant_id"], name: "index_owners_on_restaurant_id"
 
   create_table "reservations", force: true do |t|
     t.boolean  "confirmed"

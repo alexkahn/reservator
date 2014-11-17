@@ -1,13 +1,15 @@
 class RestaurantController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show ]
-  
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :get_restaurant, except: [:index, :create, :new]
+  before_action :authorized?, except: [:index, :show]
+
   def index
     @restaurants = Restaurant.all
   end
-  
+
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.owner = Owner.find(session[:user_id])
+    @restaurant.owner = Owner.find_by_user_id(current_user.id)
     @restaurant.save()
     redirect_to @restaurant, notice: 'Created'
   end
@@ -17,21 +19,17 @@ class RestaurantController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
     @restaurant.update!(restaurant_params)
     redirect_to @restaurant, notice: "Updated"
   end
 
   def destroy
-    @restaurant = Restaurant.find(params[:id]).destroy
     @restaurant.destroy
     redirect_to action: "index"
   end
@@ -42,6 +40,14 @@ class RestaurantController < ApplicationController
     params.require(:restaurant).permit(:name,:description,:address,\
                                        :city,:state,:postal_code,\
                                        :phone,:web)
+  end
+
+  def get_restaurant
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+  def authorized?
+    current_user.role == 'owner'
   end
 
 end

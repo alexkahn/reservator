@@ -19,10 +19,7 @@ ActiveRecord::Schema.define(version: 20141117005142) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.integer  "restaurant_id"
   end
-
-  add_index "owners", ["restaurant_id"], name: "index_owners_on_restaurant_id"
 
   create_table "reservations", force: true do |t|
     t.boolean  "confirmed"
@@ -48,7 +45,10 @@ ActiveRecord::Schema.define(version: 20141117005142) do
     t.string   "web"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id"
   end
+
+  add_index "restaurants", ["owner_id"], name: "index_restaurants_on_owner_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

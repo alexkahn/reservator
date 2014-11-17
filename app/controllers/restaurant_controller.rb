@@ -7,6 +7,7 @@ class RestaurantController < ApplicationController
   
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.owner = Owner.find(session[:user_id])
     @restaurant.save()
     redirect_to @restaurant, notice: 'Created'
   end

@@ -3,8 +3,9 @@ class RestaurantController < ApplicationController
   before_action :get_restaurant, except: [:index, :create, :new]
   before_action :authorized?, except: [:index, :show]
 
-  def index
-    @restaurants = Restaurant.all
+  def index 
+    @restaurants = if authorized? ?
+      Restaurant.owner current_user : Restaurant.all
   end
 
   def create

@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     resources :reservation
   end
   resources :reservation
+  get '/owner', to: 'restaurant#dashboard'
 end

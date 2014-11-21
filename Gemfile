@@ -19,4 +19,6 @@ group :development, :test do
   gem 'sqlite3'
   gem 'spring'
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'faker', '~> 1.4.3'
+  gem 'pry-rails'
 end

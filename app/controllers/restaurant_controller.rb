@@ -8,7 +8,7 @@ class RestaurantController < ApplicationController
   end
 
   def dashboard
-    @restaurants = Restaurant.find_by_owner_id current_user
+    @restaurants = Restaurant.where(owner_id: current_user.id)
     if @restaurants
       @restaurants
     else
@@ -18,7 +18,7 @@ class RestaurantController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.owner = Owner.find_by_user_id(current_user.id)
+    @restaurant.owner_id = current_user.id
     @restaurant.save()
     redirect_to @restaurant, notice: 'Created'
   end

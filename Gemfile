@@ -11,14 +11,18 @@ gem 'bootstrap-sass'
 gem 'sass-rails'
 gem 'autoprefixer-rails'
 gem 'devise'
-gem 'bcrypt-ruby'
+
 group :development do
+end
+
+group :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'shoulda-matchers', '~> 2.7.0', require: false
 end
 
 group :development, :test do
   gem 'sqlite3'
   gem 'spring'
-  gem 'rspec-rails', '~> 3.0.0'
   gem 'faker', '~> 1.4.3'
   gem 'pry-rails'
 end

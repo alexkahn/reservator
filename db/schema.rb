@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123202955) do
+ActiveRecord::Schema.define(version: 20141123221004) do
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "reservations", force: true do |t|
     t.boolean  "confirmed"
@@ -41,6 +47,18 @@ ActiveRecord::Schema.define(version: 20141123202955) do
   end
 
   add_index "restaurants", ["owner_id"], name: "index_restaurants_on_owner_id"
+
+  create_table "restaurants_categories", id: false, force: true do |t|
+    t.integer "restaurant_id"
+    t.integer "category_id"
+  end
+
+  create_table "stars", force: true do |t|
+    t.integer  "fan_id"
+    t.integer  "restaurant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",       null: false

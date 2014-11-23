@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117182302) do
-
-  create_table "owners", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-  end
+ActiveRecord::Schema.define(version: 20141123202955) do
 
   create_table "reservations", force: true do |t|
     t.boolean  "confirmed"

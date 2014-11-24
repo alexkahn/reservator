@@ -13,7 +13,7 @@ Reservation.delete_all
 Star.delete_all
 
 # Generate Patron flavored Users
-30.times do
+100.times do
   User.create!({
     email: Faker::Internet.email,
     password: "password",
@@ -22,7 +22,7 @@ Star.delete_all
 end
 
 # Generate Owner flavored Users
-10.times do 
+20.times do 
   User.create!({
     email: Faker::Internet.email,
     password: "password",
@@ -31,7 +31,7 @@ end
 end
 
 # Genreate Restaurants
-15.times do
+80.times do
   Restaurant.create!({
     name: Faker::Company.name,
     description: Faker::Lorem.sentence,
@@ -46,7 +46,7 @@ end
 end
 
 # Generate Reservations
-30.times do
+50.times do
   Reservation.create!({
     confirmed: false,
     name: Faker::Name.name,
@@ -58,9 +58,9 @@ end
 end
 
 # Make some stars
-20.times do
+100.times do
   Star.create!({
-    fan_id: User.pluck(:id).sample,
+    fan_id: User.where(role:"patron").pluck(:id).sample,
     restaurant_id: Restaurant.pluck(:id).sample
   })
 end

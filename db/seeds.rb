@@ -10,6 +10,7 @@ require 'faker'
 User.delete_all
 Restaurant.delete_all
 Reservation.delete_all
+Star.delete_all
 
 # Generate Patron flavored Users
 30.times do
@@ -17,15 +18,15 @@ Reservation.delete_all
     email: Faker::Internet.email,
     password: "password",
     role: "patron"
-    })
+  })
 end
 
 # Generate Owner flavored Users
 10.times do 
   User.create!({
-  email: Faker::Internet.email,
-  password: "password",
-  role: "owner"
+    email: Faker::Internet.email,
+    password: "password",
+    role: "owner"
   })
 end
 
@@ -41,7 +42,7 @@ end
     phone: Faker::PhoneNumber.phone_number,
     web: Faker::Internet.url,
     owner_id: User.where(role: "owner").pluck(:id).sample
-    })
+  })
 end
 
 # Generate Reservations
@@ -53,5 +54,13 @@ end
     date: Faker::Date.forward(365),
     time: Time.strptime("17:00", "%H:%M"),
     restaurant_id: Restaurant.pluck(:id).sample
-    })
+  })
+end
+
+# Make some stars
+20.times do
+  Star.create!({
+    fan_id: User.pluck(:id).sample,
+    restaurant_id: Restaurant.pluck(:id).sample
+  })
 end

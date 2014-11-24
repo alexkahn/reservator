@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'restaurant#index'
   resources :restaurant do
     resources :reservation
+    resources :star
   end
   resources :reservation
   get '/owner', to: 'restaurant#dashboard'

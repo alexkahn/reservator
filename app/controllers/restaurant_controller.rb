@@ -18,7 +18,7 @@ class RestaurantController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.owner_id = current_user.id
+    @restaurant.owner_id = current_user.owner? ? current_user.id : nil
     @restaurant.save()
     redirect_to @restaurant, notice: 'Created'
   end

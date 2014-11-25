@@ -12,15 +12,17 @@ class RestaurantController < ApplicationController
     if @restaurants
       @restaurants
     else
-      # do something else
+      redirect_to :index, :notice "You haven't any restaurants!"
     end
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.owner_id = current_user.owner? ? current_user.id : nil
-    @restaurant.save()
-    redirect_to @restaurant, notice: 'Created'
+    registration = RestaurantRegistration.new
+    @restaurant = registration.restaurant
+    if registration
+      redirect_to @restaurant, notice: 'Successfully Created'
+    else
+      render :new
   end
 
   def new

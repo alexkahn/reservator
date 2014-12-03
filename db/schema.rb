@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 20141123221004) do
     t.datetime "updated_at"
   end
 
+  create_table "categories_restaurants", id: false, force: true do |t|
+    t.integer "restaurant_id"
+    t.integer "category_id"
+  end
+
   create_table "reservations", force: true do |t|
     t.boolean  "confirmed"
     t.string   "name"
@@ -47,11 +52,6 @@ ActiveRecord::Schema.define(version: 20141123221004) do
   end
 
   add_index "restaurants", ["owner_id"], name: "index_restaurants_on_owner_id"
-
-  create_table "restaurants_categories", id: false, force: true do |t|
-    t.integer "restaurant_id"
-    t.integer "category_id"
-  end
 
   create_table "stars", force: true do |t|
     t.integer  "fan_id"

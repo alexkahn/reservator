@@ -12,7 +12,7 @@ class RestaurantController < ApplicationController
     if @restaurants
       @restaurants
     else
-      redirect_to :index, :notice "You haven't any restaurants!"
+      redirect_to root_url, notice: "You haven't any restaurants!"
     end
   end
 
@@ -23,6 +23,7 @@ class RestaurantController < ApplicationController
       redirect_to @restaurant, notice: 'Successfully Created'
     else
       render :new
+    end
   end
 
   def new

@@ -22,7 +22,7 @@ class RestaurantController < ApplicationController
     if registration
       redirect_to @restaurant, notice: 'Successfully Created'
     else
-      render :new
+      render :new, notice: 'Something went wrong, try again'
     end
   end
 

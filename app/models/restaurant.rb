@@ -19,7 +19,7 @@ class RestaurantRegistration
   end
 
   def create
-    @restaurant.owner_id = @user.owner? ? user.id : nil
+    @restaurant.owner_id = @user.owner? ? @user.id : nil
     @restaurant.save
   end
 

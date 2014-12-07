@@ -11,4 +11,9 @@ class HomeController < ApplicationController
     @restaurants = query.all
   end
 
+  def patron_dashboard
+    @reservations = current_user.reservations
+    @favorites = current_user.favorite_restaurants
+  end
+  
 end

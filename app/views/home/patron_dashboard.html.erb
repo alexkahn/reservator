@@ -1,0 +1,10 @@
+<div class="row">
+	<ul>
+  <% @reservations.each do |reso| %>
+	<li class="list-group-item"><%= link_to reso.date_time, reso %><i class="pull-right <%= reso.confirmed ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove" %>"></i></li>
+  <% end %>
+	</ul>
+	<% @favorites.each do |f| %>
+	<h2><%= f.name %></h2>
+	<% end %>
+</div>

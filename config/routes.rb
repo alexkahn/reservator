@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :reservation
 
   get '/owner', to: 'home#owner_dashboard'
+  get '/patron', to: 'home#patron_dashboard'
 
   resources :star, only: :index 
 

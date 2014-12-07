@@ -1,28 +1,20 @@
 Rails.application.routes.draw do
-  
-  concern :reservable do |options|
-    resources :reservation, options
-  end
-  
-  concern :starable do |options|
-    resources :star, options
-  end
-  
+
   devise_for :users
 
   root 'home#index'
-  
-  resources :restaurant do
-    concerns :reservable
-    concerns :starable, only: [:create, :destroy]
+
+  resources :restaurants do
+    resources :reservations
+    resources :stars, only: [:create, :destroy]
   end
-  
-  resources :reservation
+
+  resources :reservations
 
   get '/owner', to: 'home#owner_dashboard'
   get '/patron', to: 'home#patron_dashboard'
 
-  resources :star, only: :index 
+  resources :stars, only: :index
 
   resources :category do
     resources :restaurant, only: :index

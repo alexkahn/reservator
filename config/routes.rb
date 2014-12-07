@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   resources :restaurants do
     resources :reservations
-    resources :stars, only: [:create, :destroy]
+    member do
+      resources :stars, only: [:create, :destroy]
+    end
   end
 
   resources :reservations

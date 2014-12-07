@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-xs-12 col-md-12">
+		<h2 class="text-center">Reservations:</h2>
+		<div class="list-group">
+		
+		<% @restaurants.each do |restaurant| %>
+			<%= link_to restaurant.name, restaurant, class: "list-group-item-heading" %>
+			
+			<% @restaurants.reservations.each do |reso| %>
+				<p class="list-group-item-text"><%= link_to reso.date_time, reso %></p>
+			<% end %>
+			
+		<% end %>
+		</div>
+	</div>
+</div>

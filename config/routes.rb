@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   devise_for :users
 
-  root 'restaurant#index'
+  root 'home#index'
   
   resources :restaurant do
     concerns :reservable
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   
   resources :reservation
 
-  get '/owner', to: 'restaurant#dashboard'
+  get '/owner', to: 'home#owner_dashboard'
 
   resources :star, only: :index 
 

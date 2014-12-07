@@ -6,8 +6,9 @@ class HomeController < ApplicationController
   end
 
   def owner_dashboard
-    @restaurants = current_user.restaurants.includes(:reservations)
-    @reservations = Reservation.where(restaurants: @restaurants)
+    query = current_user.restaurants.includes(:reservations)
+    query.where("restaurants.reservations.date_time >= ?", Date.today )
+    @restaurants = query.all
   end
 
 end

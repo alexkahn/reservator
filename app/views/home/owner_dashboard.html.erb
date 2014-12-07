@@ -1,16 +1,23 @@
 <div class="row">
-	<div class="col-xs-12 col-md-12">
-		<h2 class="text-center">Reservations:</h2>
-		<div class="list-group">
-		
-		<% @restaurants.each do |restaurant| %>
-			<%= link_to restaurant.name, restaurant, class: "list-group-item-heading" %>
-			
-			<% @restaurants.reservations.each do |reso| %>
-				<p class="list-group-item-text"><%= link_to reso.date_time, reso %></p>
-			<% end %>
-			
-		<% end %>
+	<% @restaurants.each do |restaurant| %>
+		<div class="col-xs-12 col-md-4 col-lg-3">
+		  <div class="panel panel-default">
+		    <!-- Default panel contents -->
+		    <div class="panel-heading"><%= link_to restaurant.name, restaurant %></div>
+
+		    <% if restaurant.reservations.exists? %>
+		      <ul class="list-group">
+		      <% restaurant.reservations.each do |reso| %>
+				<li class="list-group-item"><%= link_to reso.date_time, reso %><i class="pull-right <%= reso.confirmed ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove" %>"></i></li>
+		      <% end %>
+		    </ul>
+		    
+		    <% else %>
+		    <div class="panel-body">
+		      <p>No reservations at this time.</p>
+		    </div>
+		    <% end %>
+		  </div>
 		</div>
-	</div>
+	<% end %>
 </div>

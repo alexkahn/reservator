@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :stars, foreign_key: :fan_id, dependent: :nullify
   has_many :favorite_restaurants, through: :stars, source: :restaurant 
 
+  has_many :reservations, foreign_key: :patron_id
 
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
 

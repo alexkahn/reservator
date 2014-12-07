@@ -1,0 +1,32 @@
+<div class="jumbotron">
+	<div class="container">
+	<% if user_signed_in? %>
+		<h1>Welcome back!</h1>
+	<% else %>
+		<h1>Welcome Foodies!</h1>
+		<p>Get started by making an account!</p>
+		<%= link_to "Sign up!", new_user_registration_path, class: "btn btn-primary" %>
+	<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12 col-md-3">
+		<h2 class="text-center">Categories:</h2>
+		<div class="list-group">
+		<% @categories.each do |category| %>
+			<%= link_to category.name, category, class: "list-group-item" %>
+		<% end %>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<h2 class="text-center">Our Restaurants:</h2>
+		<% @restaurants.each do |restaurant| %>
+		<div class='col-md-3 col-lg-4'>
+			<h2><%= link_to restaurant.name, restaurant %></h2>
+			<p><%= restaurant.description %></p>
+		</div>
+		<% end %>
+	</div>
+
+</div>

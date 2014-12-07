@@ -16,8 +16,8 @@ Rails.application.routes.draw do
 
   resources :stars, only: :index
 
-  resources :category do
-    resources :restaurant, only: :index
+  resources :categories do
+    resources :restaurants, only: :index
   end
 
 end

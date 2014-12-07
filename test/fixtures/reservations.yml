@@ -1,0 +1,5 @@
+one:
+    date_time: <%= DateTime.now %>
+    restaurant: 1
+    name: "John"
+    email: "john@example.com"

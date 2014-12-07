@@ -4,8 +4,7 @@ class CreateReservations < ActiveRecord::Migration
       t.boolean :confirmed
       t.string :name
       t.string :email
-      t.date :date
-      t.time :time
+      t.datetime :date_time
       
       t.timestamps
     end

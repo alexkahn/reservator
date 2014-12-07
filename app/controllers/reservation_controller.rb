@@ -1,7 +1,13 @@
 class ReservationController < ApplicationController
   
   def index
-    @reservations = Reservation.all
+    if current_user.role == "patron"
+      @reservations = Reservation.where(patron: current_user.id)
+    elsif current_user.role == "owner"
+      @reservations = Reservation.where(restaurant: current_user.restaurants)
+    else
+      redirect_to :root
+    end
   end
   
   def show
@@ -14,9 +20,10 @@ class ReservationController < ApplicationController
   
   def create
     # @restaurant = Restaurant.find_by_id(params[:restaurant_id])
-    @reservation = Reservation.new(reservation_params.merge(:restaurant_id => params[:restaurant_id]))
+    @reservation = Reservation.new(reservation_params.merge(restaurant_id: params[:restaurant_id]))
+    @reservation.patron = current_user unless current_user == nil
     @reservation.save 
-    redirect_to @reservation, notice: 'Created'
+    redirect_to @reservation.restaurant, notice: "Reservation request sent for #{@reservation.restaurant.name}"
   end
   
   def edit
@@ -26,7 +33,7 @@ class ReservationController < ApplicationController
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update!(reservation_params)
-    redirect_to @reservation, notice: "Updated"
+    redirect_to @reservation, notice: "Updated reservation"
   end
   
   def destroy
@@ -38,7 +45,7 @@ class ReservationController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:name, :email, :date, :time, :restaurant_id)
+    params.require(:reservation).permit(:name, :email, :date_time, :restaurant_id)
   end
 
 end

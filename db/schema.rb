@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123221004) do
+ActiveRecord::Schema.define(version: 20141207013945) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -28,13 +28,14 @@ ActiveRecord::Schema.define(version: 20141123221004) do
     t.boolean  "confirmed"
     t.string   "name"
     t.string   "email"
-    t.date     "date"
-    t.time     "time"
+    t.datetime "date_time"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "restaurant_id"
+    t.integer  "patron_id"
   end
 
+  add_index "reservations", ["patron_id"], name: "index_reservations_on_patron_id"
   add_index "reservations", ["restaurant_id"], name: "index_reservations_on_restaurant_id"
 
   create_table "restaurants", force: true do |t|

@@ -1,4 +1,5 @@
 toms_bistro:
+    id: 1
     name: "Tom's Bistro"
     description: "A little Italian eatery in the heart of Pawnee"
     owner: tom

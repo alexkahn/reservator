@@ -1,20 +1,19 @@
 
 <div class="jumbotron">
-		<div class="container">
-			<h1>Hello Restaurant Enthusiats!</h1>
-			<p>This is the index view, it shows a list of the restaurants!</p>
-			<%= link_to "Add a Restaurant", new_restaurant_path, class: "btn btn-primary" %>
-		</div>
+	<div class="container">
+		<h1>Hello Restaurant Enthusiats!</h1>
+		<p>This is the index view, it shows a list of the restaurants!</p>
+	</div>
 </div>
+
 <div class="row">
 	<h2 class="text-center">Our Restaurants:</h2>
 </div>
 <div class="row">
 	<% @restaurants.each do |restaurant| %>
-	<div class='col-md-4'>
-		<h2><%= restaurant.name %></h2>
+	<div class='col-md-3 col-lg-4'>
+		<h2><%= link_to restaurant.name, restaurant %></h2>
 		<p><%= restaurant.description %></p>
-		<%= link_to "Details", restaurant %>
 	</div>
 	<% end %>
 </div>

@@ -1,7 +1,5 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12">
-			<h1>@reservation.restaurant.name</h1>
-		</div>
+		<%= render "reservation", locals:{reservation: @reservation} %>
 	</div>
 </div>

@@ -22,8 +22,11 @@ class ReservationsController < ApplicationController
     # @restaurant = Restaurant.find_by_id(params[:restaurant_id])
     @reservation = Reservation.new(reservation_params.merge(restaurant_id: params[:restaurant_id]))
     @reservation.patron = current_user unless current_user == nil
-    @reservation.save 
-    redirect_to @reservation.restaurant, notice: "Reservation request sent for #{@reservation.restaurant.name}"
+    @reservation.save
+    if @reservation
+      redirect_to @reservation.restaurant, notice: "Reservation request sent for #{@reservation.restaurant.name}"
+    else
+      render :new, notice: "Sorry, your request couldn't be processed, is all the information correct?"
   end
   
   def edit

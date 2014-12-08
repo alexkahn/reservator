@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         
-        <% if user_signed_in? && current_user.role == 'owner' %>
+        <% if user_signed_in? && current_user.owner? %>
           <li><%= link_to "Dashboard", '/owner' %></li>
           <li><%= link_to current_user.email, edit_user_registration_path %></li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>

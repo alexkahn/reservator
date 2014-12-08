@@ -1,0 +1,6 @@
+alert('I work!');
+var star = $('#star');
+star.attr('href', '<%= star_path(@star) %>');
+    .removeClass('btn-primary')
+    .addClass('btn-danger')
+    .text('Remove from favorites')

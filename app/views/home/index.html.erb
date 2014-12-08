@@ -1,12 +1,23 @@
 <div class="jumbotron">
 	<div class="container">
-	<% if user_signed_in? %>
+	
+	<% if user_signed_in? && current_user.patron? %>
+	
 		<h1>Welcome back!</h1>
+	
+	<% elsif user_signed_in? && current_user.owner? %>
+		
+		<h1>Welcome back!</h1>
+		<%= link_to "Create a restaurant", new_restaurant_path, class: "btn btn-primary" %>
+	
 	<% else %>
+		
 		<h1>Welcome Foodies!</h1>
 		<p>Get started by making an account!</p>
 		<%= link_to "Sign up!", new_user_registration_path, class: "btn btn-primary" %>
+	
 	<% end %>
+	
 	</div>
 </div>
 

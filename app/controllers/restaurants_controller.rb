@@ -7,19 +7,13 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
   end
 
-  def dashboard
-    @restaurants = Restaurant.where(owner_id: current_user.id)
-    if @restaurants
-      @restaurants
-    else
-      redirect_to root_url, notice: "You haven't any restaurants!"
-    end
-  end
-
   def create
-    registration = RestaurantRegistration.new
-    @restaurant = registration.restaurant
-    if registration
+    @restaurant = Restaurant.new restaurant_params
+    
+    @restaurant.owner = current_user.owner? ? current_user : nil
+    @restaurant.save
+
+    if @restaurant.valid?
       redirect_to @restaurant, notice: 'Successfully Created'
     else
       render :new, notice: 'Something went wrong, try again'
@@ -31,6 +25,9 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    if current_user.patron? and Star.where(fan: current_user, restaurant: @restaurant).exists?
+      @star = Star.where(fan: current_user, restaurant: @restaurant).first
+    end
   end
 
   def edit

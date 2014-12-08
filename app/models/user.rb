@@ -15,10 +15,10 @@ class User < ActiveRecord::Base
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
 
   def owner?
-    self.role == 'owner'
+    role == 'owner'
   end
 
   def patron?
-    self.role == 'patron'
+    role == 'patron'
   end
 end

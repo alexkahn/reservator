@@ -14,9 +14,7 @@
 		
 		<% if user_signed_in? && owns_this_restaurant(current_user.id, @restaurant.owner_id) %>	
 		<div class="col-md-4 col-lg-6">
-			<div class="btn-group">
-				<%= link_to "Make a Reservation",
-					new_restaurant_reservation_path(@restaurant), class: "btn btn-primary" %>				
+			<div class="btn-group">			
 				<%= link_to "Edit Details", edit_restaurant_path,
 					html_options = {class: "btn btn-warning"} %>
 				<%= link_to "Delete Restaurant", @restaurant,
@@ -27,7 +25,11 @@
 		<% elsif user_signed_in? && current_user.patron? %>
 			<%= link_to "Make a Reservation",
 						new_restaurant_reservation_path(@restaurant), class: "btn btn-primary" %>
-			<%= link_to "Add to Favorites", stars_path(@restaurant), method: :post, class: 'btn btn-success', id: 'star', remote: true %>
+			<% if starred_this_restaurant(current_user, @restaurant) %>
+				<%= link_to "Remove from Favorites", star_path(@star), method: :delete, class: 'btn btn-danger', id: 'star', remote: true %>
+			<% else %>
+				<%= link_to "Add to Favorites", stars_path(@restaurant), method: :post, class: 'btn btn-success', id: 'star', remote: true %>
+			<% end %>
 		<% end %>
 	</div>
 </div>

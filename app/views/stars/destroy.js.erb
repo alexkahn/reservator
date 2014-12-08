@@ -1,0 +1,6 @@
+alert('I work too!');
+var star = $('#star');
+star.removeClass('btn-danger')
+    .addClass('btn-success')
+    .text('Add to favorites')
+    .attr('href', <%= stars_path(@restaurant) %>);

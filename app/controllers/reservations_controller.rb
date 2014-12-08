@@ -27,6 +27,7 @@ class ReservationsController < ApplicationController
       redirect_to @reservation.restaurant, notice: "Reservation request sent for #{@reservation.restaurant.name}"
     else
       render :new, notice: "Sorry, your request couldn't be processed, is all the information correct?"
+    end
   end
   
   def edit

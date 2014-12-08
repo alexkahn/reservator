@@ -1,3 +1,8 @@
-<div class="col-xs-12">
-	<p><%= @reservation.date_time %></p>
+<div class="col-xs-10 col-md-6">
+	<h1>Reservation for:</h1>
+	<h2><%= @reservation.restaurant.name %></h2>
+	<p><%= @reservation.date_time.to_date.to_formatted_s(:long_ordinal) %> - <%= @reservation.date_time.to_time.strftime("%I:%M %p") %></p>
 </div>
+
+
+

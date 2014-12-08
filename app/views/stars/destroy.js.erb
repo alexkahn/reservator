@@ -1,6 +1,6 @@
-alert('I work too!');
 var star = $('#star');
-star.removeClass('btn-danger')
+star.attr('href', '<%= escape_javascript(stars_path(@restaurant)) %>')
+	.data('method', 'post')
+    .removeClass('btn-danger')
     .addClass('btn-success')
-    .text('Add to favorites')
-    .attr('href', <%= stars_path(@restaurant) %>);
+    .text('Add to favorites');

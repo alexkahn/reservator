@@ -26,9 +26,9 @@
 			<%= link_to "Make a Reservation",
 						new_restaurant_reservation_path(@restaurant), class: "btn btn-primary" %>
 			<% if starred_this_restaurant(current_user, @restaurant) %>
-				<%= link_to "Remove from Favorites", star_path(@star), method: :delete, class: 'btn btn-danger', id: 'star', remote: true %>
+				<%= link_to "Remove from favorites", star_path(@star), method: :delete, class: 'btn btn-danger', id: 'star', remote: true %>
 			<% else %>
-				<%= link_to "Add to Favorites", stars_path(@restaurant), method: :post, class: 'btn btn-success', id: 'star', remote: true %>
+				<%= link_to "Add to favorites", stars_path(@restaurant), method: :post, class: 'btn btn-success', id: 'star', remote: true %>
 			<% end %>
 		<% end %>
 	</div>
